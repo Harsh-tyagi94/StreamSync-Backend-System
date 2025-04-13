@@ -63,7 +63,7 @@ const registerUser = asyncHandler( async (req,res) => {
         $or: [{username}, {email}]
     })
 
-    if (!existedUser) {
+    if (existedUser) {
         throw new ApiError(409, "user with email or username already exist")
     }
 
@@ -81,7 +81,7 @@ const registerUser = asyncHandler( async (req,res) => {
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
 
-    if (!avatarLocalPath) {
+    if (!avatar?.url) {
         throw new ApiError(400, "Avatar file is required")
     }
 
