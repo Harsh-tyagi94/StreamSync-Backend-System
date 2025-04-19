@@ -20,7 +20,6 @@ const generateAccessAndRefereshTokens = async(userId) => {
     
         user.refreshToken = refreshToken
         await user.save({validateBeforeSave: false})
-        console.log(refreshToken)
     
         return {accessToken, refreshToken}
     } catch (error) {
@@ -141,8 +140,6 @@ const loginUser = asyncHandler( async (req,res) => {
     )
 
     console.log("successfully loggedIn")
-
-    console.log(refreshToken)
 
     return res
         .status(200)
