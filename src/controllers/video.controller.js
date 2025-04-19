@@ -6,7 +6,8 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 import { deleteOnCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js"
 import mongoose, { isValidObjectId } from "mongoose"
 
-
+const page = 1;
+const limit = 10;
 const options = {
     page: parseInt(page, 10),
     limit: parseInt(limit, 10)
