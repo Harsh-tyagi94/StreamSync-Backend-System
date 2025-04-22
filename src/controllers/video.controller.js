@@ -14,7 +14,7 @@ const options = {
 };
 
 const getAllVideos = asyncHandler(async (req, res) => {
-    const { page=1, limit=10, query, sortBy, sortType, userId} = req.query
+    const { page=1, limit=5, query, sortBy, sortType, userId} = req.query;
 
     const pipeline = [];
 
@@ -37,7 +37,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
 
         pipeline.push({
             $match: {
-                owner: mongoose.Types.ObjectId(userId)
+                owner: new mongoose.Types.ObjectId(userId)
             }
         });
     }
@@ -77,6 +77,17 @@ const getAllVideos = asyncHandler(async (req, res) => {
             $unwind: "$ownerDetails"
         }
     )
+
+    pipeline.push({
+        $project: {
+          title: 1,
+          duration: 1,
+          isPublished: 1,
+          createdAt: 1,
+          thumbnail: 1,
+          ownerDetails: 1
+        }
+    });
 
     const videoAggregate = Video.aggregate(pipeline);
 
