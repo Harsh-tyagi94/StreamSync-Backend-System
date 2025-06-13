@@ -38,22 +38,55 @@ A scalable backend API for a video streaming platform — built using **Node.js*
 ---
 
 ## 📁 Project Structure
+streamsync-backend/
+├── src/
+│ ├── controllers/ # Business logic
+│ ├── middlewares/ # Auth, error, validation handlers
+│ ├── models/ # Mongoose schemas
+│ ├── routes/ # Express route handlers
+│ ├── utils/ # Utility functions (e.g., Cloudinary setup)
+│ └── index.js # App entry point
+├── .env # Environment variables
+├── .gitignore
+├── package.json
+├── README.md
 
+## 🔐 Environment Setup
 
-### 1. Clone the Repository
+Create a `.env` file in the root directory and configure the following:
 
-```bash
-git clone https://github.com/Harsh-tyagi94/streamsync-backend.git
-cd streamsync-backend
-
-npm install
-
+```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongo_connection
 JWT_SECRET=your_jwt_secret
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+```
 
+## 🚀 Getting Started
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Harsh-tyagi94/streamsync-backend-system.git
+cd streamsync-backend-system
+npm install
+2. Run in Development
 npm run dev
+```
 
+## 📡 API Endpoints Overview
+Method	Endpoint	Description
+POST	/{server}/user/register	User registration
+POST	/{server}/user/login	User login with JWT cookie
+POST	/{server}/videos/uploadVideo	Upload a video and thumbnail
+GET	/api/videos/
+
+## 🛡️ Security Practices
+Passwords hashed using bcrypt with salting
+JWT stored in HTTP-only cookies to prevent XSS
+Environment variables stored securely with .env
+Cloud media access keys hidden from client-side
+
+## 👨‍💻 Author
+Harsh Tyagi
